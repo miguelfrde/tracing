@@ -272,19 +272,15 @@ macro_rules! metadata {
     };
 }
 
-// Facade module: `no_std` uses spinlocks, `std` uses the mutexes in the standard library
 #[cfg(not(feature = "std"))]
 #[doc(hidden)]
-pub type Once = crate::spin::Once<()>;
+pub type Once = crate::once::Once<()>;
+#[cfg(not(feature = "std"))]
+mod once;
 
 #[cfg(feature = "std")]
 #[doc(hidden)]
 pub use std::sync::Once;
-
-#[cfg(not(feature = "std"))]
-// Trimmed-down vendored version of spin 0.5.2 (0387621)
-// Required for `Once` in `no_std` builds.
-pub(crate) mod spin;
 
 pub mod callsite;
 pub mod collect;

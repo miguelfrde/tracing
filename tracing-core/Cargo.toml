@@ -18,9 +18,9 @@ description = """
 Core primitives for application-level tracing.
 """
 categories = [
-    "development-tools::debugging",
-    "development-tools::profiling",
-    "asynchronous",
+  "development-tools::debugging",
+  "development-tools::profiling",
+  "asynchronous",
 ]
 keywords = ["logging", "tracing", "profiling"]
 edition = "2018"
@@ -29,13 +29,13 @@ rust-version = "1.56.0"
 [features]
 default = ["std"]
 alloc = []
-std = ["once_cell", "alloc"]
+std = ["alloc"]
 
 [badges]
 maintenance = { status = "actively-developed" }
 
 [dependencies]
-once_cell = { version = "1.13.0", optional = true }
+once_cell = { version = "1.17.1", features = ["critical_section"] }
 
 [package.metadata.docs.rs]
 all-features = true
